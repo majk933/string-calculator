@@ -6,7 +6,6 @@ import spock.lang.Unroll
 class CalculateNumbersTest extends Specification {
     private def calculateNumbers = new CalculateNumbers()
 
-
     @Unroll
     def "should ignore numbers greater than 1000 [input = #input]"() {
         expect:

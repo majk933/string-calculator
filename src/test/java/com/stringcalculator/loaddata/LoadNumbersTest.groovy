@@ -52,4 +52,18 @@ class LoadNumbersTest extends Specification {
         ]
     }
 
+    def "should throw error when delimiter is provided"() {
+        when:
+        loadNumbers.process(input)
+
+        then:
+        thrown(DelimiterInputNotValid)
+
+        where:
+        input << ["//[xxx\n1xx2",
+                  "//xxx]\n1xxx2xxy3",
+                  "//xxx\n1xxx2yyy3yy4"
+        ]
+    }
+
 }

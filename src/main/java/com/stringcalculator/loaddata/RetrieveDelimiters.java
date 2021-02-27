@@ -3,18 +3,17 @@ package com.stringcalculator.loaddata;
 import java.util.stream.Stream;
 
 class RetrieveDelimiters {
-    static final String LINE_PREFIX = "//";
     private static final String PREFIX = "[";
     private static final String POSTFIX = "]";
     private static final String DELIMITER = "]\\[";
+
+    static final String LINE_PREFIX = "//";
     static final String DEFAULT = ",|\n";
 
     String from(String input) {
         String delimiterInput = input.replace(LINE_PREFIX, "");
         validateInput(delimiterInput);
         return asRegExp(delimitersFrom(delimiterInput));
-
-        //return String.format("%s|\n", delimiterInput.replace("//", ""));
     }
 
     private String asRegExp(String[] delimiters) {
@@ -30,7 +29,7 @@ class RetrieveDelimiters {
 
     private void validateInput(String delimiterInput) {
         if (!isValid(delimiterInput)) {
-            throw new DelimiterInputIsNotValid(delimiterInput);
+            throw new DelimiterInputNotValid(delimiterInput);
         }
     }
 
