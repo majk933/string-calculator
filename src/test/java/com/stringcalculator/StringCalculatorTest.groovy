@@ -21,8 +21,8 @@ class StringCalculatorTest extends Specification {
         ""              | 0
         "1"             | 1
         "1\n2"           | 3
-        "1\n2\n3"         | 6
-        "1\n2\n3\n4"       | 10
+        "1\n2,3"         | 6
+        "1\n2,3\n4"       | 10
     }
 
     def "should throw error when invalid input is given"() {

@@ -3,7 +3,7 @@ package com.stringcalculator;
 import java.util.stream.Stream;
 
 public class StringCalculator {
-    private static final String DELIMITER = "\n";
+    private static final String DELIMITERS_REGEXP = "[,\n]";
 
     public int add(String input) {
         return isEmpty(input) ? 0 : summarize(input);
@@ -15,7 +15,7 @@ public class StringCalculator {
     }
 
     public int summarize(String input) {
-        return Stream.of(input.split(DELIMITER))
+        return Stream.of(input.split(DELIMITERS_REGEXP))
                 .map((Integer::parseInt))
                 .reduce(0, Integer::sum);
     }
