@@ -5,10 +5,10 @@ class RetrieveInputs {
 
     InputData retrieve(String input) {
         String firstLine = input.split("\n")[0];
-        if (firstLine.startsWith("//")) {
+        if (firstLine.startsWith(RetrieveDelimiters.LINE_PREFIX)) {
             return new InputData(delimiters.from(firstLine), dataWithoutDelimiter(input));
         }
-        return new InputData(delimiters.defaultDelimiter(), input);
+        return new InputData(RetrieveDelimiters.DEFAULT, input);
     }
 
     private String dataWithoutDelimiter(String input) {

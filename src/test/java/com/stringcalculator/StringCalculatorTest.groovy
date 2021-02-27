@@ -32,12 +32,12 @@ class StringCalculatorTest extends Specification {
         where:
         input                          | output
         ""                             | 0
-        "//a\n1"                       | 1
-        "//a\n2a1"                     | 3
-        "//a\n1a2a3"                   | 6
-        "//ab\n1ab2ab3ab4"             | 10
-        "//xxx\n1xxx2xxx3xxx4"         | 10
-        "//xxx\n1xxx2\n3\n4xxx5\n1000" | 1015
+        "//[a]\n1"                       | 1
+        "//[a]\n2a1"                     | 3
+        "//[a]\n1a2a3"                   | 6
+        "//[ab]\n1ab2ab3ab4"             | 10
+        "//[xxx]\n1xxx2xxx3xxx4"         | 10
+        "//[xxx]\n1xxx2\n3\n4xxx5\n1000" | 1015
     }
 
     @Unroll
@@ -48,7 +48,7 @@ class StringCalculatorTest extends Specification {
         where:
         input                           | output
         "1\n2,3\n4\n2000"               | 10
-        "//xxx\n1xxx2\n3\n4xxx5\n10000" | 15
+        "//[xxx]\n1xxx2\n3\n4xxx5\n10000" | 15
     }
 
     @Unroll
