@@ -2,7 +2,7 @@ package com.stringcalculator;
 
 import java.util.stream.Stream;
 
-public class CalculateNumbers implements ProcessingStep<Stream<Integer>, Integer> {
+class CalculateNumbers implements ProcessingStep<Stream<Integer>, Integer> {
 
     @Override
     public Integer process(Stream<Integer> stream) {

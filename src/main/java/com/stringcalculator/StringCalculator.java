@@ -1,6 +1,6 @@
 package com.stringcalculator;
 
-public class StringCalculator {
+class StringCalculator {
     private final LoadNumbers loadNumbers = new LoadNumbers();
     private final CalculateNumbers calculateNumbers = new CalculateNumbers();
 
@@ -8,6 +8,4 @@ public class StringCalculator {
         return calculateNumbers.process(
                 loadNumbers.process(input));
     }
-
-
 }

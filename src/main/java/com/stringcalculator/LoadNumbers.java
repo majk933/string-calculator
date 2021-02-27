@@ -3,21 +3,16 @@ package com.stringcalculator;
 import java.util.stream.Stream;
 
 public class LoadNumbers implements ProcessingStep<String, Stream<Integer>> {
-
-    private static final String DELIMITERS_REGEXP = "[,\n]";
+    private static final RetrieveInputs RETRIEVE_INPUTS = new RetrieveInputs();
 
     @Override
     public Stream<Integer> process(String input) {
-        return isEmpty(input) ? Stream.of(0) : summarize(input);
+        final InputData inputData = RETRIEVE_INPUTS.retrieve(input);
+        return inputData.isEmpty() ? Stream.of(0) : summarize(inputData.stream());
     }
 
-    private boolean isEmpty(String input) {
-        return input == null || input.isEmpty();
-    }
-
-    public Stream<Integer> summarize(String input) {
-        return Stream.of(input.split(DELIMITERS_REGEXP))
-                .map((Integer::parseInt));
+    public Stream<Integer> summarize(Stream<String> input) {
+        return input.map((Integer::parseInt));
     }
 
 
