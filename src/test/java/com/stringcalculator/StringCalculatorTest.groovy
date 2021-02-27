@@ -54,4 +54,26 @@ class StringCalculatorTest extends Specification {
                   "//xxx\n1xxx2xxy3"
         ]
     }
+
+    @Unroll
+    def "should throw error when negatives are provided [input = #input]"() {
+        when:
+        calculator.add(input)
+
+        then:
+        final def exception = thrown(NegativesNotAllowed)
+
+        and:
+        exception.message == negativesNotAllowedMessage(negatives)
+
+        where:
+        input                    | negatives
+        "-1"                     | "-1"
+        "1\n-2"                  | "-2"
+        "//xxx\n1xxx-2xxx-3xxx4" | "-2, -3"
+    }
+
+    private static def negativesNotAllowedMessage(String negatives) {
+        String.format("Negatives [%s] not allowed", negatives)
+    }
 }
