@@ -3,7 +3,7 @@ package com.stringcalculator;
 import java.util.stream.Stream;
 
 public class StringCalculator {
-    private static final String DELIMITER = ",";
+    private static final String DELIMITER = "\n";
 
     public int add(String input) {
         return isEmpty(input) ? 0 : summarize(input);

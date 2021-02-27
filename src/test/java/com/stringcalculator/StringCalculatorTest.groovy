@@ -20,9 +20,9 @@ class StringCalculatorTest extends Specification {
         input           | output
         ""              | 0
         "1"             | 1
-        "1,2"           | 3
-        "1,2,3"         | 6
-        "1,2,3,4"       | 10
+        "1\n2"           | 3
+        "1\n2\n3"         | 6
+        "1\n2\n3\n4"       | 10
     }
 
     def "should throw error when invalid input is given"() {
@@ -33,6 +33,6 @@ class StringCalculatorTest extends Specification {
         thrown(NumberFormatException)
 
         where:
-        input << ["1,s", "x", "{", "\n", "1,2,3,s"]
+        input << ["1\ns", "x", "{", "1,2,3,s"]
     }
 }
