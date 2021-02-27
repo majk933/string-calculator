@@ -17,12 +17,13 @@ class StringCalculatorTest extends Specification {
         calculator.add(input) == output
 
         where:
-        input       | output
-        ""          | 0
-        "1"         | 1
-        "1\n2"      | 3
-        "1\n2,3"    | 6
-        "1\n2,3\n4" | 10
+        input             | output
+        ""                | 0
+        "1"               | 1
+        "1\n2"            | 3
+        "1\n2,3"          | 6
+        "1\n2,3\n4"       | 10
+        "1\n2,3\n4\n1000" | 1010
     }
 
     @Unroll
@@ -31,15 +32,27 @@ class StringCalculatorTest extends Specification {
         calculator.add(input) == output
 
         where:
-        input                    | output
-        ""                       | 0
-        "//a\n1"                 | 1
-        "//a\n2a1"               | 3
-        "//a\n1a2a3"             | 6
-        "//ab\n1ab2ab3ab4"       | 10
-        "//xxx\n1xxx2xxx3xxx4"   | 10
-        "//xxx\n1xxx2\n3\n4xxx5" | 15
+        input                          | output
+        ""                             | 0
+        "//a\n1"                       | 1
+        "//a\n2a1"                     | 3
+        "//a\n1a2a3"                   | 6
+        "//ab\n1ab2ab3ab4"             | 10
+        "//xxx\n1xxx2xxx3xxx4"         | 10
+        "//xxx\n1xxx2\n3\n4xxx5\n1000" | 1015
     }
+
+    @Unroll
+    def "should ignore numbers greater than 1000 [input = #input]"() {
+        expect:
+        calculator.add(input) == output
+
+        where:
+        input                          | output
+        "1\n2,3\n4\n2000"              | 10
+        "//xxx\n1xxx2\n3\n4xxx5\n1005" | 15
+    }
+
 
     def "should throw error when invalid input is given [input = #input]"() {
         when:
