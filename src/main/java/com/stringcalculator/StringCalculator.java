@@ -16,7 +16,6 @@ public class StringCalculator {
 
     public int summarize(String input) {
         return Stream.of(input.split(DELIMITER))
-                .limit(3)
                 .map((Integer::parseInt))
                 .reduce(0, Integer::sum);
     }
