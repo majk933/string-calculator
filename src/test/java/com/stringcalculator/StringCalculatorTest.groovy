@@ -17,17 +17,15 @@ class StringCalculatorTest extends Specification {
         calculator.add(input) == output
 
         where:
-        input             | output
-        ""                | 0
-        "1"               | 1
-        "1\n2"            | 3
-        "1\n2,3"          | 6
-        "1\n2,3\n4"       | 10
-        "1\n2,3\n4\n1000" | 1010
+        input    | output
+        ""       | 0
+        "1"      | 1
+        "1,2"    | 3
+        "1\n2,3" | 6
     }
 
     @Unroll
-    def "should return sum of numbers separated by provided delimiter [input = #input]"() {
+    def "should return sum of numbers separated by provided delimiters [input = #input]"() {
         expect:
         calculator.add(input) == output
 
@@ -48,45 +46,20 @@ class StringCalculatorTest extends Specification {
         calculator.add(input) == output
 
         where:
-        input                          | output
-        "1\n2,3\n4\n2000"              | 10
-        "//xxx\n1xxx2\n3\n4xxx5\n1005" | 15
-    }
-
-
-    def "should throw error when invalid input is given [input = #input]"() {
-        when:
-        calculator.add(input)
-
-        then:
-        thrown(NumberFormatException)
-
-        where:
-        input << ["1\ns", "x", "{", "1,2,3,s",
-                  "//xxx\n1xx2",
-                  "//xxx\n1xxx2xxy3"
-        ]
+        input                           | output
+        "1\n2,3\n4\n2000"               | 10
+        "//xxx\n1xxx2\n3\n4xxx5\n10000" | 15
     }
 
     @Unroll
-    def "should throw error when negatives are provided [input = #input]"() {
+    def "should throw exception when negative provided"() {
         when:
         calculator.add(input)
 
         then:
-        final def exception = thrown(NegativesNotAllowed)
-
-        and:
-        exception.message == negativesNotAllowedMessage(negatives)
+        thrown(RuntimeException)
 
         where:
-        input                    | negatives
-        "-1"                     | "-1"
-        "1\n-2"                  | "-2"
-        "//xxx\n1xxx-2xxx-3xxx4" | "-2, -3"
-    }
-
-    private static def negativesNotAllowedMessage(String negatives) {
-        String.format("Negatives [%s] not allowed", negatives)
+        input << ["1\n2,3\n-4\n2000", "//xxx\n1xxx2\n3\n4xxx-5"]
     }
 }
