@@ -3,15 +3,24 @@ package com.stringcalculator;
 import java.util.stream.Stream;
 
 class RetrieveInputs {
-    private static final String DEFAULT_DELIMITER = "[,\n]";
+    private static final String DEFAULT_DELIMITER = ",|\n";
 
     public InputData retrieve(String input) {
         String firstLine = input.split("\n")[0];
         if (firstLine.startsWith("//")) {
-            return new InputData(firstLine.replace("//", ""), input.substring(input.indexOf("\n") + 1));
+            return new InputData(delimiterFrom(firstLine), dataWithoutDelimiter(input));
         }
         return new InputData(DEFAULT_DELIMITER, input);
     }
+
+    private String delimiterFrom(String firstLine) {
+        return String.format("%s|\n", firstLine.replace("//", ""));
+    }
+
+    private String dataWithoutDelimiter(String input) {
+        return input.substring(input.indexOf("\n") + 1);
+    }
+
 }
 
 class InputData {

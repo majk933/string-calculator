@@ -31,13 +31,14 @@ class StringCalculatorTest extends Specification {
         calculator.add(input) == output
 
         where:
-        input                  | output
-        ""                     | 0
-        "//a\n1"               | 1
-        "//a\n2a1"             | 3
-        "//a\n1a2a3"           | 6
-        "//ab\n1ab2ab3ab4"     | 10
-        "//xxx\n1xxx2xxx3xxx4" | 10
+        input                    | output
+        ""                       | 0
+        "//a\n1"                 | 1
+        "//a\n2a1"               | 3
+        "//a\n1a2a3"             | 6
+        "//ab\n1ab2ab3ab4"       | 10
+        "//xxx\n1xxx2xxx3xxx4"   | 10
+        "//xxx\n1xxx2\n3\n4xxx5" | 15
     }
 
     def "should throw error when invalid input is given [input = #input]"() {
