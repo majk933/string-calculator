@@ -1,9 +1,11 @@
-package com.stringcalculator;
+package com.stringcalculator.calculate;
+
+import com.stringcalculator.ProcessingStep;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-class CalculateNumbers implements ProcessingStep<List<Integer>, Integer> {
+public class CalculateNumbers implements ProcessingStep<List<Integer>, Integer> {
     private static final int MAX = 1000;
 
     @Override

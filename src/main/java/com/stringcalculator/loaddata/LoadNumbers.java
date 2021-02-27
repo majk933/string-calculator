@@ -1,4 +1,6 @@
-package com.stringcalculator;
+package com.stringcalculator.loaddata;
+
+import com.stringcalculator.ProcessingStep;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,10 +15,8 @@ public class LoadNumbers implements ProcessingStep<String, List<Integer>> {
         return inputData.isEmpty() ? List.of(0) : numbers(inputData.stream());
     }
 
-    public List<Integer> numbers(Stream<String> input) {
+    private List<Integer> numbers(Stream<String> input) {
         return input.map((Integer::parseInt))
                 .collect(Collectors.toList());
     }
-
-
 }

@@ -1,5 +1,5 @@
 package com.stringcalculator;
 
-interface ProcessingStep<Input, Output> {
+public interface ProcessingStep<Input, Output> {
     Output process(Input input);
 }
